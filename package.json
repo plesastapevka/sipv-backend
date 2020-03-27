@@ -10,7 +10,9 @@
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "koa-combine-routers": "^4.0.2",
-    "koa-router": "^8.0.8"
+    "koa-router": "^8.0.8",
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.6"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
