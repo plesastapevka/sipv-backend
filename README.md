@@ -8,6 +8,8 @@ Postopek work flowa:
 * Ko je vaša sprememba končana in funkcionalna, ustvarite pull request na <code>develop</code> branch - direktni push na <code>master</code> bo zavrnjen
 * Repo owner bo ob pull requestu odobril spremembe in jih merge-al na <code>master</code> branch
 
+#
+
 ### INCLUDED DEPENDENCIES (package.json)
 To install:
 ```
