@@ -3,6 +3,7 @@ const bodyParser = require('koa-bodyparser');
 
 const router = require('./modules/router');
 const {initDB} = require('./modules/config/mongo');
+const sockets=require('./modules/sockets/sockets');
 const app = new Koa();
 const port = 3000;
 
