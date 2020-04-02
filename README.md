@@ -14,9 +14,14 @@ To install:
 npm install
 ```
 
-### START SERVER
+### START SERVER & CLIENT
+Server:
 ```
 npm start
+```
+Client:
+```
+npm run dummy
 ```
 
 ### INSTALL MONGODB
