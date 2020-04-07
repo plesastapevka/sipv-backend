@@ -1,27 +1,54 @@
-const Net=require('net');
-const port=2222;
-const server=new Net.Server();
-server.listen(port,t());
-server.on('connection', function(socket) {
-    console.log("new connection");
-	socket.write("hello");
-	socket.on('data', function(chunk) {
-		console.log('Message from client:' +chunk.toString());
-	});
-	socket.on('end', function() {
-        console.log('Closing connection with the client');
-    });
+// const Net = require('net');
+const Socket = require('./TCPSocket')
+var port = 4000;
+// const server = new Net.Server();
 
-    socket.on('error', function(err) {
-        console.log(`Error: ${err}`);
-    });
-});
-function t(Tport)
-{
-	console.log('Tcp server listening on port: '+port);
-}
-function f(socket){
-	
+var active = []
+
+const postChannel = (req) => {
+    for(c in active) {
+        if(c.name == req.channel) return c.port;
+    }
+    return createChannel(req);
 }
 
-module.exports=server;
+const createChannel = (req) => {
+    const name = req.channel;
+    var server = new Socket("test", function(socket) {
+        server.addClient(socket);
+
+        /// User sends msg
+        socket.on('data', function (data) {
+            //TODO: protocol parser
+            var message = 'user: ' + data.toString();
+            // server.broadcast('user', message);
+            // console.log(message);
+        });
+
+        /// User disconnects
+        socket.on('end', function () {
+            server.removeClient(socket);
+            if(server.clients.length == 0) {
+                server.close();
+            }
+        });
+
+        // On socket error
+        socket.on('error', function (error) {
+            console.log('Socket error: ', error.message);
+        });
+    });
+
+    server.listen(port, function() {
+        console.log("New channel on port: " + port);
+        port++;
+    });
+
+    active.push({name: req.name, server: server, port: port});
+
+    return port;
+}
+
+module.exports = {
+    postChannel
+}
