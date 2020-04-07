@@ -4,6 +4,7 @@ const bodyParser = require('koa-bodyparser');
 const router = require('./modules/router');
 const {initDB} = require('./modules/config/mongo');
 const sockets=require('./modules/sockets/sockets');
+
 const app = new Koa();
 const port = 3000;
 
@@ -15,5 +16,5 @@ initDB((error) => {
   app.use(bodyParser());
   app.use(router());
   app.listen(port);
-  console.log(`listening on port ${port}`);
+  console.log(`Listening on port ${port}`);
 });

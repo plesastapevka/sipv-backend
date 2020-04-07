@@ -6,6 +6,7 @@ const router = new Router();
 const {Rooms} = require('../../config/mongo');
 const {empty, getDateTime} = require('../../config/util');
 
+/// Get user's rooms
 router.get('/api/getRooms/:userId', async (ctx) => {
   let code = null;
   let success = null;
@@ -36,6 +37,7 @@ router.get('/api/getRooms/:userId', async (ctx) => {
   };
 });
 
+/// Get single room
 router.get('/api/getRoom/:userId/:roomName', async (ctx) => {
   let code = null;
   let success = null;
@@ -66,6 +68,7 @@ router.get('/api/getRoom/:userId/:roomName', async (ctx) => {
   };
 });
 
+/// Create room
 router.post('/api/createRoom', async (ctx) => {
   let code = null;
   let success = null;
@@ -103,6 +106,7 @@ router.post('/api/createRoom', async (ctx) => {
   };
 });
 
+/// Update room - add user, change name
 router.put('/api/rooms/:id/:function', async (ctx) => {
   const roomId = ctx.params.id;
   const func = ctx.params.function;
