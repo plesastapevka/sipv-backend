@@ -3,7 +3,7 @@ const Router = require('koa-router');
 const mongo = require('mongodb');
 const router = new Router();
 
-const {Rooms} = require('../../config/mongo');
+const {Rooms, Chat} = require('../../config/mongo');
 const {empty, getDateTime} = require('../../config/util');
 
 router.get('/api/getRooms/:userId', async (ctx) => {
@@ -71,13 +71,18 @@ router.post('/api/createRoom', async (ctx) => {
   let success = null;
   let error = null;
   let out = null;
+  let out1 = null;
   let newRoom = null;
+  let newChat = null;
   try {
     const {body} = ctx.request;
     out = await Rooms().findOne({Title: body.title, Creator: body.admin});
-    if (empty(out)) {
+    out1 = await Chat().findOne({Title: body.title, Creator: body.admin});
+    if (empty(out) && empty(out1)) {
       newRoom = await Rooms().insertOne({Title: body.title, Creator: body.admin, People: [{User: body.admin}]});
-      if (!empty(newRoom)) {
+      newChat = await Chat().insertOne({Title: body.title, Creator: body.admin, Chat: []});
+      if (!empty(newRoom) && !empty(newChat)) {
+        out1 = await Rooms().updateOne({_id: new mongo.ObjectId(newRoom.ops[0]._id)}, {$set: {ChatId: newChat.ops[0]._id.toString()}});
         code = 200;
         success = true;
         error = false;
@@ -89,7 +94,7 @@ router.post('/api/createRoom', async (ctx) => {
     } else {
       code = 500;
       success = false;
-      error = 'Room with same name already exists!';
+      error = 'Room/chat with same name already exists!';
     }
   } catch (err) {
     success = false;
@@ -140,11 +145,13 @@ router.put('/api/rooms/:id/:function', async (ctx) => {
       break;
     case 'changeName': {
       try {
-        const {title, creator} = ctx.request.body;
+        const {title, creator, chatId} = ctx.request.body;
         out = await Rooms().findOne({Creator: creator, Title: title});
-        if (empty(out)) {
+        const output = await Chat().findOne({Creator: creator, Title: title});
+        if (empty(out) && empty(output)) {
           const out1 = await Rooms().updateOne({_id: new mongo.ObjectId(roomId)}, {$set: {Title: title}});
-          if (!empty(out1)) {
+          const out2 = await Chat().updateOne({_id: new mongo.ObjectId(chatId)}, {$set: {Title: title}});
+          if (!empty(out1) && !empty(out2)) {
             code = 200;
             success = true;
             error = false;
