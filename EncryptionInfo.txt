@@ -1,0 +1,30 @@
+ENKRIPCIJE SPOROCIL:
+//C# dodaj NuGet : BouncyCastle, Newtonsoft.Json
+
+SERVER SIDE:
+	prvo sporocilo ki ga prejmes od clienta je RSA javni kljuc brez enkripcije
+	ustvaris aes kljuc in ga z rsa javnim kljucem zakodiras in posles uporabniku
+	potem pa vsaki message zakodiras z aes kljucem in odkodiras z aes kljucem
+
+CLIENT SIDE:
+	posles poublic RSA kljuc za prvo sporocilo
+	prvi response odkodiras z private RSA kljucem in to je aes kljuc ki si ga shranis
+	od tu dalje vsako sporocilo zakodiras z aes kljucem inodkodiras z aeskljucem
+
+NODE.js:
+	const rsaWrapper = require('../../config/rsa-wrapper');
+	const aesWrapper = require('../../config/aes-wrapper');
+
+	rsaWrapper.generate();
+	rsaWrapper.encrypt(publicKey, message);
+	rsaWrapper.decrypt(privateKey, message);
+
+	aesWrapper.generateKey();
+	aesWrapper.encrypt(message, key);
+	aesWrapper.decrypt(message, key);
+
+C#:
+	RsaEncrypt(publicKey, message);
+	RsaDecrypt(privateKey, message);
+	AesEncrypt(message, key);
+	AesDecrypt(message, key);

@@ -5,6 +5,8 @@ const router = new Router();
 const {Users} = require('../../config/mongo');
 const {empty, getDateTime} = require('../../config/util');
 
+//private key naj nebi bil v bazi, samo za testiranje
+
 router.get('/api/getPublicKey/:username/', async (ctx) => {
     let code = null;
     let success = null;
