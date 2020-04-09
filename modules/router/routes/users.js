@@ -50,9 +50,9 @@ router.post('/api/registerUser', async (ctx) => {
         error = 'Error inserting in database!';
       }
     } else {
-      code = 500;
+      code = 409;
       success = false;
-      error = 'User with same name already exists!';
+      error = 'User already exists.';
     }
   } catch (err) {
     success = false;
