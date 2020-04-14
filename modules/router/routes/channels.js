@@ -3,9 +3,10 @@ const Router = require('koa-router');
 const socket = require('../../sockets/sockets')
 const router = new Router();
 
+const authenticated = require('../../config/authenticated');
 
 /// Request channel - create, join
-router.post('/api/channels/requestChannel', async (ctx) => {
+router.post('/api/channels/requestChannel', authenticated, async (ctx) => {
     let code = null;
     let success = null;
     let error = null;

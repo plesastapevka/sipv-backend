@@ -6,7 +6,9 @@ const router = new Router();
 const {Rooms, Chat} = require('../../config/mongo');
 const {empty, getDateTime} = require('../../config/util');
 
-router.put('/api/chat/:id/:function', async (ctx) => {
+const authenticated = require('../../config/authenticated');
+
+router.put('/api/chat/:id/:function', authenticated, async (ctx) => {
   let code = null;
   let success = null;
   let error = null;
