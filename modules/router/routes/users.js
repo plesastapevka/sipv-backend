@@ -4,9 +4,7 @@ const router = new Router();
 
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET || 'some_secret'; // secret string, ki ga samo server pozna
-
 const {Users} = require('../../config/mongo');
-
 
 /* PRIMER API ENDPOINTA IN KAKO SE NAJ PIŠEJO */
 router.get('/api/getUser/:user', async (ctx) => {
@@ -40,8 +38,7 @@ router.post('/api/registerUser', async (ctx) => {
   let error = null;
   let out = null;
   let newUser = null;
-  
-  
+
   try {
     const {body} = ctx.request;
     out = await Users().findOne({email: body.email, username: body.username});
