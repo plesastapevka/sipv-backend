@@ -5,7 +5,7 @@ const router = new Router();
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET || 'some_secret'; // secret string, ki ga samo server pozna
 const {Users} = require('../../config/mongo');
-
+const {empty} = require('../../config/util');
 /* PRIMER API ENDPOINTA IN KAKO SE NAJ PIŠEJO */
 router.get('/api/getUser/:user', async (ctx) => {
   let code = null;
