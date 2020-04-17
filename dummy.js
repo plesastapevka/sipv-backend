@@ -5,7 +5,8 @@ client.connect(2222, '127.0.0.1',function(){
 	client.write('hello');
 });
 client.on('data', function(data) {
-	console.log('Received: ' + data); // kill client after server's response
+	console.log('Received: ' + data);
+	client.destroy();
 });
 
 client.on('close', function() {
