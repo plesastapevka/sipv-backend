@@ -38,7 +38,7 @@ Tip: put
 Namen:
 Omogoča manipulacijo klepeta.
 
-*:id* -> predstavlja identifikator deležnika klepeta.  
+*:id* -> predstavlja identifikator deležnika.  
 *:function* -> predstavlja funkcionalnost v klepetu.
 
 Funkcionalnosti klepeta:
@@ -46,6 +46,11 @@ Funkcionalnosti klepeta:
 - 'removeMsg'
 
 ### addMsg
+
+```
+Klic: '/api/chat/:id/addMsg'
+Tip: put
+```
 
 Namen:
 Omogoča vnos novega sporočila v klepet.
