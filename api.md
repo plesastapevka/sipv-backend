@@ -5,10 +5,23 @@ Verzija: 1.0.0
 
 Dokumentacija se nanaša na "backend" SIPV projekta, kjer izdelujemo aplikacija za komunikacijo na daljavo.
 
-#### Vsebina  
-Take me to [pookie](#pookie)
+### Vsebina
+[Uvod](#intro)  
+[Kanali](#kanali)  
+[Klepet](#klepet)  
+[DM](#dm)  
+[Sobe](#sobe)  
+[Uporabniki](#uporabniki)  
 
-# Kanali
+# <a name="intro"></a> Uvod  
+
+Koristne informacije:
+- **GET** se uporablja za pridobivanje podatkov iz določenega vira.
+- **POST** se uporablja za pošiljanje podatkov strežniku z namenom, da se ustvari nov vir.
+- **PUT** se uporablja za pošiljanje podatkov strežniku z namenom, da se ustvari ali posodobi vir.  
+
+
+# <a name="kanali"></a> Kanali
 ```
 Klic: '/api/channels/requestChannel'  
 Tip: post  
@@ -29,7 +42,7 @@ Naredi poizvedbo po željenem kanalu.
 - Ob neuspehu vrne kodo 500.
 ```
 
-# Klepet
+# <a name="klepet"></a> Klepet
 ```
 Klic: '/api/chat/:id/:function'
 Tip: put
@@ -94,7 +107,7 @@ Omogoča izbris sporočila iz klepeta.
 - Ob neuspehu vrne kodo 500.
 ```
 
-# <a name="pookie"></a> DM
+# <a name="dm"></a> DM
 ```
 Klic: '/api/createDM'
 Tip: post
@@ -203,7 +216,7 @@ Omogoča izbris sporočila v izbranem DMju.
 - Ob neuspehu vrne kodo 500.
 ```
 
-# Prostor
+# <a name="sobe"></a> Sobe
 
 ```
 Klic: '/api/getRooms/:userId'
@@ -331,7 +344,7 @@ Omogoča spremembo imena sobe.
 - Ob neuspehu vrne kodo 500.
 ```
 
-# Uporabniki
+# <a name="uporabniki"></a> Uporabniki
 ```
 Klic: '/api/getUser/:user'  
 Tip: get  
