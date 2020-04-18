@@ -7,10 +7,11 @@ const secret = process.env.JWT_SECRET || 'some_secret';
 module.exports = async (ctx, next) => {
 	let error = null;
 	let code = null;
-	
+	console.log(ctx);
 	if (!ctx.headers.authorization) {
 		code = 403;
 		error = 'No token';
+console.log(error);
 		ctx.throw(code, error);
 	}
 	else {
@@ -21,6 +22,7 @@ module.exports = async (ctx, next) => {
 			// v ctx.request.jwtPayload.sub se shrani id prijavljenega uporabnika, for further use
 			
 		} catch (err) {
+			console.log(err);
 			code = err.status || 403;
 			error = err;
 			ctx.throw(code, error);
@@ -28,4 +30,5 @@ module.exports = async (ctx, next) => {
 	}
 	
 	await next();
+
 };

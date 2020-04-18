@@ -68,6 +68,7 @@ router.post('/api/registerUser', async (ctx) => {
     error,
     success,
   };
+console.log(error);
 });
 
 // Avtentikacija uporabnika, uporablja jwt (json web token)
@@ -77,9 +78,9 @@ router.post('/api/authUser', async (ctx) => {
 	let error = null;
 	let data = null;
 	let user = null;
-	
 	try {
 		const { body } = ctx.request;
+
 		if (!body.username) {
 			success = false;
 			code = 422;
@@ -122,6 +123,7 @@ router.post('/api/authUser', async (ctx) => {
 		error,
 		success,
 	};
+console.log(error);
 });
 
 module.exports = router;
