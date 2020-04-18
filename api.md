@@ -17,12 +17,12 @@ Tip: post
 **NAMEN**  
 Naredi poizvedbo po željenem kanalu.
 
-**PARAMETRI**
+**PARAMETRI**  
 | Ime           | Opis          |
 | ------------- |:-------------:|
 | body          | ``` name: string ```         |
 
-**ODZIVI**  
+**ODZIVI**   
 
 ```diff
 + Ob uspehu vrne vrata do zahtevanega kanala in kodo 200.  
@@ -34,13 +34,13 @@ Naredi poizvedbo po željenem kanalu.
 Klic: '/api/chat/:id/:function'
 Tip: put
 ```
-**NAMEN**
+**NAMEN**  
 Omogoča manipulacijo klepeta.
 
 *:id* -> predstavlja identifikator deležnika.  
 *:function* -> predstavlja funkcionalnost v klepetu.
 
-**PARAMETRI**
+**PARAMETRI**  
 | Ime           | Opis          |
 | ------------- |:-------------:|
 | :id         | ``` :id: string ```|
@@ -53,7 +53,7 @@ Klic: '/api/chat/:id/addMsg'
 Tip: put
 ```
 
-**NAMEN**:
+**NAMEN**  
 Omogoča vnos novega sporočila v klepet.
 
 **PARAMETRI**
@@ -77,10 +77,10 @@ Klic: '/api/chat/:id/removeMsg'
 Tip: put
 ```
 
-**NAMEN**:
+**NAMEN**  
 Omogoča izbris sporočila iz klepeta.
 
-**PARAMETRI**
+**PARAMETRI**  
 | Ime           | Opis          |
 | ------------- |:-------------:|
 | :id         | ``` :id: string ```|
