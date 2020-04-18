@@ -14,18 +14,21 @@ Klic: '/api/channels/requestChannel'
 Tip: post  
 ```
 
-**Namen**  
+**NAMEN**  
 Naredi zahtevo za željeni kanal.
 
-aka Parametri  
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| body          | ime kanala    |
 
-**Uporaba**  
-TODO ...
+**ODZIVI**  
+
+
+```diff
++ Ob uspehu vrne vrata do zahtevanega kanala in kodo 200.  
+- Ob neuspehu vrne kodo 500.
+```
 
 # Klepet
 ```
