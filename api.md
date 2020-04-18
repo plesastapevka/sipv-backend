@@ -15,15 +15,14 @@ Tip: post
 ```
 
 **NAMEN**  
-Naredi zahtevo za željeni kanal.
+Naredi poizvedbo po željenem kanalu.
 
 **PARAMETRI**
 | Ime           | Opis          |
 | ------------- |:-------------:|
-| body          | ```{ name: string }```         |
+| body          | ``` name: string ```         |
 
 **ODZIVI**  
-
 
 ```diff
 + Ob uspehu vrne vrata do zahtevanega kanala in kodo 200.  
@@ -35,42 +34,65 @@ Naredi zahtevo za željeni kanal.
 Klic: '/api/chat/:id/:function'
 Tip: put
 ```
-Namen:
+**NAMEN**
 Omogoča manipulacijo klepeta.
 
 *:id* -> predstavlja identifikator deležnika.  
 *:function* -> predstavlja funkcionalnost v klepetu.
 
-Funkcionalnosti klepeta:
-- 'addMsg'
-- 'removeMsg'
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :id         | ``` :id: string ```|
+| :func          | ``` :func: 'addMsg' \|\| 'removeMsg' ```|
 
-### addMsg
+### :ifunc: addMsg
 
 ```
 Klic: '/api/chat/:id/addMsg'
 Tip: put
 ```
 
-Namen:
+**NAMEN**:
 Omogoča vnos novega sporočila v klepet.
 
-Parametri:
-- username: uporabniško ime
-- date: časovni žig sporočila
-- message: vsebina sporočila
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :id         | ``` :id: string ```|
+| :func          | ``` :func: 'addMsg' ```|
+| body          | ``` username: string ``` <br> ```date: datetime``` <br> ``` message: string ```|
 
-Ob uspehu vrne 200 (OK).
+**ODZIVI**  
 
-### removeMsg
+```diff
++ Ob uspehu se v klepet vnese novo sporočilo in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
 
-Namen:
+### :ifunc: removeMsg
+
+```
+Klic: '/api/chat/:id/removeMsg'
+Tip: put
+```
+
+**NAMEN**:
 Omogoča izbris sporočila iz klepeta.
 
-Parametri:
-/
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :id         | ``` :id: string ```|
+| :func          | ``` :func: 'removeMsg' ```|
+| body          | ``` msgId: string ```|
 
-Ob uspehu vrne 200 (OK).
+**ODZIVI**  
+
+```diff
++ Ob uspehu se iz klepeta izbriše sporočilo in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
 
 # DM
 ```
