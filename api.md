@@ -20,7 +20,7 @@ Naredi zahtevo za željeni kanal.
 **PARAMETRI**
 | Ime           | Opis          |
 | ------------- |:-------------:|
-| body          | ime kanala    |
+| body          | ```{ name: string }```         |
 
 **ODZIVI**  
 
