@@ -99,49 +99,94 @@ Omogoča izbris sporočila iz klepeta.
 Klic: '/api/createDM'
 Tip: post
 ```
-Namen:  
-Ustvari novi DM.  
-Ob uspehu vrne 200 (OK).
+**NAMEN**  
+Ustvari nov DM.
+
+**PARAMETRI**  
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| body         | ``` user1: string ``` <br> ```user2: datetime``` |
+
+**ODZIVI**  
+
+```diff
++ Ob uspehu se ustvari novi DM in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
 
 ```
 Klic: '/api/getDMs/:id'
 Tip: get
 ```
 
-Namen:  
+**NAMEN**  
 Pridobi zahtevani DM.
-Ob uspehu vrne 200 (OK) in podatke o iskanem DMu.
+
+**PARAMETRI**  
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :id         | ``` id: string ``` |
+
+**ODZIVI**  
+
+```diff
++ Ob uspehu se vrnejo informacije o zahtevanem DMju in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
 
 ```
 Klic: '/api/DMs/:id/:function
 Tip: put
 ```  
-Namen:
-Omogoča manipulacijo z DMji.
+**NAMEN**  
+Omogoča manipulacijo DMja.
 
-*:id* -> predstavlja identifikator deležnika klepeta.  
-*:function* -> predstavlja funkcionalnost nad DMjem.
+*:id* -> predstavlja identifikator klepeta.  
+*:function* -> predstavlja izbrano funkcionalnost.
 
-Funkcionalnosti DMja:
-- 'addMsg'
-- 'removeMsg'
+**PARAMETRI**  
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :id         | ``` :id: string ```|
+| :func          | ``` :func: 'addMsg' \|\| 'removeMsg' ```|
 
-### addMsg
+### :func: addMsg
 
-Namen:
-Omogoča vnos novega sporočila v DM.  
+**NAMEN**  
+Omogoča vnos novega sporočila v izbranem DMju.
 
-Ob uspehu vrne 200 (OK).
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :id         | ``` :id: string ```|
+| :func          | ``` :func: 'addMsg' ```|
+| body          | ``` msg: string ``` <br> ```date: datetime``` <br> ``` sender: string ``` <br> ``` reciever: string ```|
 
-### removeMsg
+**ODZIVI**  
 
-Namen:
-Omogoča izbris sporočila iz klepeta.
+```diff
++ Ob uspehu se v ustrezen DM vnese sporočilo in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
 
-Parametri:
-/
+### :func: removeMsg
 
-Ob uspehu vrne 200 (OK).
+**NAMEN**  
+Omogoča izbris sporočila v izbranem DMju.
+
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :id         | ``` :id: string ```|
+| :func          | ``` :func: 'addMsg' ```|
+| body          | ``` msgId: string ```|
+
+**ODZIVI**  
+
+```diff
++ Ob uspehu se v ustrezen DM izbriše sporočilo in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
 
 # Prostor
 
