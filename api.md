@@ -276,13 +276,13 @@ Ustvari novo sobo.
 Klic: '/api/rooms/:id/:function'
 Tip: put
 ```  
-**NAMEN**
+**NAMEN**  
 Omogoča manipulacijo s sobo.
 
 **PARAMETRI**  
 | Ime           | Opis          |
 | ------------- |:-------------:|
-| :roomId         | ``` :id: string ```|
+| :id         | ``` :roomId: string ```|
 | :function          | ``` :function: 'addUser' \|\| 'changeName' ```|
 
 ### :function: addUser
@@ -328,5 +328,70 @@ Omogoča spremembo imena sobe.
 
 ```diff
 + Ob uspehu se izbrani sobi in pripadajočemu klepetu spremeni ime in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
+
+# Uporabniki
+```
+Klic: '/api/getUser/:user'  
+Tip: get  
+```
+
+**NAMEN**  
+Pridobi informacije o uporabniku.
+
+**PARAMETRI**  
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :user          | ``` user: string ```         |
+
+**ODZIVI**   
+
+```diff
++ Ob uspehu vrne informacije od zahtevanega uporabika in kodo 200.  
+- Ob neuspehu vrne kodo 500.
+```
+
+***
+
+```
+Klic: '/api/registerUser'  
+Tip: post  
+```
+
+**NAMEN**  
+Registracija novega uporabnika.
+
+**PARAMETRI**  
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| body          |``` email: string ``` <br> ```username: string``` <br> ```pass: string```         |
+
+**ODZIVI**   
+
+```diff
++ Ob uspehu se registrira novega uporabnika in vrne kodo 200.  
+- Ob neuspehu vrne kodo 500.
+```
+
+***
+
+```
+Klic: '/api/authUser'  
+Tip: post  
+```
+
+**NAMEN**  
+Avtentikacija novega uporabnika.
+
+**PARAMETRI**  
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| body          |``` username: string ``` <br> ```pass: string```         |
+
+**ODZIVI**   
+
+```diff
++ Ob uspehu se avtenticira novega uporabnika in vrne kodo 200.  
 - Ob neuspehu vrne kodo 500.
 ```
