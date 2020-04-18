@@ -114,6 +114,8 @@ Ustvari nov DM.
 - Ob neuspehu vrne kodo 500.
 ```
 
+***
+
 ```
 Klic: '/api/getDMs/:id'
 Tip: get
@@ -134,6 +136,8 @@ Pridobi zahtevani DM.
 - Ob neuspehu vrne kodo 500.
 ```
 
+***
+
 ```
 Klic: '/api/DMs/:id/:function
 Tip: put
@@ -150,7 +154,13 @@ Omogoča manipulacijo DMja.
 | :id         | ``` :id: string ```|
 | :func          | ``` :func: 'addMsg' \|\| 'removeMsg' ```|
 
+
 ### :func: addMsg
+
+```
+Klic: '/api/DMs/:id/addMsg
+Tip: put
+```  
 
 **NAMEN**  
 Omogoča vnos novega sporočila v izbranem DMju.
@@ -170,6 +180,11 @@ Omogoča vnos novega sporočila v izbranem DMju.
 ```
 
 ### :func: removeMsg
+
+```
+Klic: '/api/DMs/:id/removeMsg
+Tip: put
+```  
 
 **NAMEN**  
 Omogoča izbris sporočila v izbranem DMju.
@@ -195,55 +210,123 @@ Klic: '/api/getRooms/:userId'
 Tip: get
 ```  
 
-Namen:   
-Pridobi uporabnikove sobe.
-Ob uspehu vrne 200 (OK) in seznam uporabnikovih sob.
+**NAMEN**   
+Pridobi seznam sob uporabnika.
+
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :userId         | ``` :userId: string ```|
+
+**ODZIVI**  
+
+```diff
++ Ob uspehu se vrne seznam sob in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
+
+***
 
 ```
 Klic: '/api/getRoom/:userId/:roomName'
 Tip: get
 ```  
 
-Namen:  
-Pridobi zahtevano sobo uporabnika.
-Ob uspehu vrne 200 (OK) in podatke o zahtevani sobi.
+**NAMEN**   
+Pridobi specifično sobo uporabnika.
+
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :userId         | ``` :userId: string ```|
+| :roomName         | ``` :title: string ```|
+
+**ODZIVI**  
+
+```diff
++ Ob uspehu se vrne izbrana soba in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
+
+***
 
 ```
 Klic: '/api/createRoom'
 Tip: post
 ```  
 
-Namen:
+**NAMEN**  
 Ustvari novo sobo.
-Ob uspehu vrne 200 (OK).
+
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| body        | ``` title: string ``` <br> ```creator: string```|
+
+**ODZIVI**  
+
+```diff
++ Ob uspehu se ustvari nova soba s pripadajočim klepetom in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
+
+***
 
 ```
 Klic: '/api/rooms/:id/:function'
 Tip: put
 ```  
-Namen:
+**NAMEN**
 Omogoča manipulacijo s sobo.
 
-*:id* -> predstavlja identifikator deležnika.  
-*:function* -> predstavlja funkcionalnost nad sobo.
+**PARAMETRI**  
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :roomId         | ``` :id: string ```|
+| :function          | ``` :function: 'addUser' \|\| 'changeName' ```|
 
-Funkcionalnosti DMja:
-- 'addUser'
-- 'changeName'
+### :function: addUser
 
-### addUser
+```
+Klic: '/api/rooms/:id/addUser'
+Tip: put
+```  
 
-Namen:
-Omogoča dodajanje uporabnika v sobo.
+**NAMEN**  
+Omogoča dodajanje deležnikov v sobo.
 
-Ob uspehu vrne 200 (OK).
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :id         | ``` :roomId: string ```|
+| body          | ``` username: string ```|
 
-### changeName
+**ODZIVI**  
 
-Namen:
-Spremeni ime sobe.
+```diff
++ Ob uspehu se v ustrezno sobo doda uporabnika in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
 
-Parametri:
-/
+### :function: changeName
 
-Ob uspehu vrne 200 (OK).
+```
+Klic: '/api/rooms/:id/changeName'
+Tip: put
+```  
+
+**NAMEN**  
+Omogoča spremembo imena sobe.
+
+**PARAMETRI**
+| Ime           | Opis          |
+| ------------- |:-------------:|
+| :id         | ``` :roomId: string ```|
+| body          | ``` title: string ``` <br> ```creator: string``` <br> ```chatId: string```|
+
+**ODZIVI**  
+
+```diff
++ Ob uspehu se izbrani sobi in pripadajočemu klepetu spremeni ime in vrne koda 200.
+- Ob neuspehu vrne kodo 500.
+```
