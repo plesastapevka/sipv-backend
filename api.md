@@ -5,8 +5,8 @@ Verzija: 1.0.0
 
 Dokumentacija se nanaša na "backend" SIPV projekta, kjer izdelujemo aplikacija za komunikacijo na daljavo.
 
-Vsebina  
-... naštej vesbino tukaj ...  
+#### Vsebina  
+Take me to [pookie](#pookie)
 
 # Kanali
 ```
@@ -94,7 +94,7 @@ Omogoča izbris sporočila iz klepeta.
 - Ob neuspehu vrne kodo 500.
 ```
 
-# DM
+# <a name="pookie"></a> DM
 ```
 Klic: '/api/createDM'
 Tip: post
