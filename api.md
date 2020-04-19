@@ -18,7 +18,14 @@ Dokumentacija se nanaša na "backend" SIPV projekta, kjer izdelujemo aplikacija 
 Koristne informacije:
 - **GET** se uporablja za pridobivanje podatkov iz določenega vira.
 - **POST** se uporablja za pošiljanje podatkov strežniku z namenom, da se ustvari nov vir.
-- **PUT** se uporablja za pošiljanje podatkov strežniku z namenom, da se ustvari ali posodobi vir.  
+- **PUT** se uporablja za pošiljanje podatkov strežniku z namenom, da se ustvari nov ali posodobi obstoječi vir.  
+
+Uporabljene statusne kode:
+- **200** &#8594; OK  
+- **500** &#8594; Napaka na strežniku  
+- **409** &#8594; Konflikt  
+- **422** &#8594; Napaka pri procesiranju    
+- **401** &#8594; Neavtoriziran dostop  
 
 
 # <a name="kanali"></a> Kanali
@@ -118,7 +125,7 @@ Ustvari nov DM.
 **PARAMETRI**  
 | Ime           | Opis          |
 | ------------- |:-------------:|
-| body         | ``` user1: string ``` <br> ```user2: datetime``` |
+| body         | ``` user1: string ``` <br> ```user2: string``` |
 
 **ODZIVI**  
 
@@ -136,6 +143,8 @@ Tip: get
 
 **NAMEN**  
 Pridobi zahtevani DM.
+
+*:id* -> predstavlja identifikator DMja.  
 
 **PARAMETRI**  
 | Ime           | Opis          |
@@ -384,7 +393,7 @@ Registracija novega uporabnika.
 
 ```diff
 + Ob uspehu se registrira novega uporabnika in vrne kodo 200.  
-- Ob neuspehu vrne kodo 500.
+- Ob neuspehu vrne kodo 500 ali 409.
 ```
 
 ***
@@ -406,5 +415,5 @@ Avtentikacija novega uporabnika.
 
 ```diff
 + Ob uspehu se avtenticira novega uporabnika in vrne kodo 200.  
-- Ob neuspehu vrne kodo 500.
+- Ob neuspehu vrne kodo 500 ali 422 ali 401.
 ```
