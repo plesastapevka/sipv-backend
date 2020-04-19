@@ -6,8 +6,10 @@ const router = new Router();
 const {Rooms, Chat} = require('../../config/mongo');
 const {empty, getDateTime} = require('../../config/util');
 
+const authenticated = require('../../config/authenticated');
+
 /// Get user's rooms
-router.get('/api/getRooms/:userId', async (ctx) => {
+router.get('/api/getRooms/:userId', authenticated, async (ctx) => { // dodal middleware za avtentikacijo probno
   let code = null;
   let success = null;
   let error = null;
@@ -38,7 +40,7 @@ router.get('/api/getRooms/:userId', async (ctx) => {
 });
 
 /// Get single room
-router.get('/api/getRoom/:userId/:roomName', async (ctx) => {
+router.get('/api/getRoom/:userId/:roomName', authenticated, async (ctx) => {
   let code = null;
   let success = null;
   let error = null;
@@ -69,7 +71,7 @@ router.get('/api/getRoom/:userId/:roomName', async (ctx) => {
 });
 
 /// Create room
-router.post('/api/createRoom', async (ctx) => {
+router.post('/api/createRoom', authenticated, async (ctx) => {
   let code = null;
   let success = null;
   let error = null;
@@ -112,7 +114,7 @@ router.post('/api/createRoom', async (ctx) => {
 });
 
 /// Update room - add user, change name
-router.put('/api/rooms/:id/:function', async (ctx) => {
+router.put('/api/rooms/:id/:function', authenticated, async (ctx) => {
   const roomId = ctx.params.id;
   const func = ctx.params.function;
   let code = null;
