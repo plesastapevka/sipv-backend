@@ -21,6 +21,10 @@ Server:
 ```
 npm start
 ```
+ali tako, da se ob vsaki spremembi kode strežnik restarta:
+```
+npm run nodemon
+```
 Client:
 ```
 npm run dummy
