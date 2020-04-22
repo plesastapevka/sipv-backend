@@ -36,13 +36,15 @@ router.post('/api/registerUser', async (ctx) => {
   let code = null;
   let success = null;
   let error = null;
-  let out = null;
+  let outUsername = null;
+  let outEmail = null;
   let newUser = null;
 
   try {
     const {body} = ctx.request;
-    out = await Users().findOne({email: body.email, username: body.username});
-    if (empty(out)) {
+    outUsername = await Users().findOne({username: body.username});
+    outEmail = await Users().findOne({email: body.email});
+    if (empty(outUsername) && empty(outEmail)) {
       newUser = await Users().insertOne({email: body.email, username: body.username, pass: body.pass});
       if (!empty(newUser)) {
         code = 200;
