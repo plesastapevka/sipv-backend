@@ -6,7 +6,7 @@ const {initDB} = require('./modules/config/mongo');
 const sockets=require('./modules/sockets/sockets');
 
 const app = new Koa();
-const port = 3000;
+const port = 3001;
 
 initDB((error) => {
   if (error) {
