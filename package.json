@@ -9,6 +9,7 @@
     "dummy": "node ./dummy.js"
   },
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "debug": "~2.6.9",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.11.0",

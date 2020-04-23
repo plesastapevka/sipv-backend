@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
+const cors = require('@koa/cors');
 
 const router = require('./modules/router');
 const {initDB} = require('./modules/config/mongo');
@@ -16,5 +17,6 @@ initDB((error) => {
   app.use(bodyParser());
   app.use(router());
   app.listen(port);
+  app.use(cors());
   console.log(`Listening on port ${port}`);
 });
