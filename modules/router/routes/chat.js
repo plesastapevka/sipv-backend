@@ -84,4 +84,30 @@ router.put('/api/chat/:id/:function', authenticated, async (ctx) => {
   };
 });
 
+router.get('/api/chat/:id', authenticated, async (ctx) => {
+  let code = null;
+  let success = null;
+  let error = null;
+  const id = ctx.params.id;
+  try {
+    const out = await Chat().findOne({_id: new mongo.ObjectId(id)});
+    if (!empty(out)) {
+      code = 200;
+      success = true;
+    } else {
+      code = 500;
+      success = false;
+    }
+  } catch (err) {
+    error = err;
+    success = false;
+    code = 500;
+  }
+  ctx.status = code;
+  ctx.body = {
+    success,
+    error,
+  };
+});
+
 module.exports = router;
