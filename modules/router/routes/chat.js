@@ -88,9 +88,10 @@ router.get('/api/chat/:id', authenticated, async (ctx) => {
   let code = null;
   let success = null;
   let error = null;
+  const data = null;
   const id = ctx.params.id;
   try {
-    const out = await Chat().findOne({_id: new mongo.ObjectId(id)});
+    data = await Chat().findOne({_id: new mongo.ObjectId(id)});
     if (!empty(out)) {
       code = 200;
       success = true;
@@ -107,6 +108,7 @@ router.get('/api/chat/:id', authenticated, async (ctx) => {
   ctx.body = {
     success,
     error,
+    data,
   };
 });
 
