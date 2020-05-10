@@ -8,7 +8,7 @@ const sockets=require('./modules/sockets/sockets');
 
 const app = new Koa();
 const port = 3001;
-
+app.use(cors());
 initDB((error) => {
   if (error) {
     console.error('MongoClient error:', error);
@@ -17,6 +17,5 @@ initDB((error) => {
   app.use(bodyParser());
   app.use(router());
   app.listen(port);
-  app.use(cors());
   console.log(`Listening on port ${port}`);
 });
