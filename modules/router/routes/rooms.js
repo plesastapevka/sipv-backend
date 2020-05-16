@@ -16,7 +16,7 @@ router.get('/api/getRooms/:userId', authenticated, async (ctx) => { // dodal mid
   let data = null;
   try {
     const {userId} = ctx.params;
-    data = await Rooms().find({Creator: userId}).toArray();
+    data = await Rooms().find({People: {$elemMatch: {User: userId}}}).toArray();
     if (!empty(data)) {
       code = 200;
       success = true;
@@ -40,14 +40,14 @@ router.get('/api/getRooms/:userId', authenticated, async (ctx) => { // dodal mid
 });
 
 /// Get single room
-router.get('/api/getRoom/:userId/:roomName', authenticated, async (ctx) => {
+router.get('/api/getRoom/:id', authenticated, async (ctx) => {
   let code = null;
   let success = null;
   let error = null;
   let data = null;
   try {
-    const {roomName, userId} = ctx.params;
-    data = await Rooms().findOne({Title: roomName, Creator: userId});
+    const {id} = ctx.params;
+    data = await Rooms().findOne({_id: new mongo.ObjectId(id)});
     if (!empty(data)) {
       code = 200;
       success = true;
